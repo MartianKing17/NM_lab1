@@ -15,7 +15,7 @@ def f(x):
 
 
 def df(x):
-    return 4 * x**3 - 9 * x**2 + 40 * x + 44
+    return 4 * x**3 - 9 * x**2 - 40*x + 44
 
 
 def dihotomia(a, b, func, ell):
@@ -42,14 +42,14 @@ def dihotomia(a, b, func, ell):
     return x_next, n, asterio
 
 
-def mod_newton(a, b, f, dfn, ell):
-    x = 1
+def mod_newton(a, b, f, ell):
+    x0 = b
     n = 0
-    x_new = 4.74
-    dfn = dfn(x_new)
+    x = 0
+    df_res = df(x0)
 
-    while (abs(x_new - x)) > ell or (x_new >= a and x_new <= b):
-        x = x_new
-        x_new = x - (f(x) / dfn)
+    while abs(x-x0) > ell or x0 <= a or x0 <= b:
+        x = x0
+        x0 = x0 - (f(x0) / df_res)
         n += 1
-    return x, n
+    return x0, n
